@@ -8,32 +8,41 @@ int main() {
   cout << "Qual a operação que vocêm deseja fazer?\n";
   cin >> operation;
 
-  float paidValue, productValue, restValue, realNumber, result = 0;
+  float number1, number2, result = 0;
   
   switch(operation) {
     case 1:
         cout << "Informe o valor pago:\n";
-        cin >> paidValue;
+        cin >> number1;
       
         cout << "Informe o valor do produto:\n";
-        cin >> productValue;
+        cin >> number2;
       
-        restValue = paidValue - productValue;
+        result = number1 - number2;
       
-        cout << "Seu troco é: " << restValue;
+        cout << "Seu troco é: " << result;
         return 0;
       break;
     case 2:
-        cout << "Insira um número real:\n";
-        cin >> realNumber;
+        cout << "Informe um número real:\n";
+        cin >> number1;
       
-        result = realNumber / 2;
+        number2 = number1 / 2;
+      
+        cout << "Metade do valor digitado: " << number2;
+        return 0;
+      break;
+    case 3:
+        cout << "Informe o valor por quilo:\n";
+        cin >> number1;
+
+        cout << "Informe a quantidade de quilos:\n";
+        cin >> number2;
+      
+        result = number1 * number2;
       
         cout << "Metade do valor digitado: " << result;
         return 0;
       break;
   }
-  
-  
-
 }
