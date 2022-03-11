@@ -44,5 +44,14 @@ int main() {
         cout << "Metade do valor digitado: " << result;
         return 0;
       break;
+    case 4:
+        cout << "Informe o valor do produto:\n";
+        cin >> number1;
+      
+        result = number1 + (number1 * 0.15);
+      
+        cout << "Valor do produto com 15% de imposto: " << result;
+        return 0;
+      break;
   }
 }
