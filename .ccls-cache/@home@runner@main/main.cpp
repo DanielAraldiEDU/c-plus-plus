@@ -53,5 +53,14 @@ int main() {
         cout << "Valor do produto com 15% de imposto: " << result;
         return 0;
       break;
+    case 5:
+        cout << "Informe a quantidade de cavalos:\n";
+        cin >> number1;
+      
+        result = number1 * 4;
+      
+        cout << "Serão necessárias " << result << " ferraduras";
+        return 0;
+      break;
   }
 }
