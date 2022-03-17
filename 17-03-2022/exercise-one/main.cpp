@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-  int numberA, numberB, supportValue = 0;
+  int numberA, numberB = 0;
 
   cout << "Informe o valor da variável A:\n";
   cin >> numberA;
@@ -12,10 +12,9 @@ int main()
   cout << "Informe o valor da variável B:\n";
   cin >> numberB;
 
-  supportValue = numberA;
-
-  numberA = numberB;
-  numberB = supportValue;
+  numberA = numberB - numberA;
+  numberB = numberB - numberA;
+  numberA = numberB + numberA;
 
   cout << "Informe o valor da variável A é: " << numberA;
   cout << "\nInforme o valor da variável B é: " << numberB;
