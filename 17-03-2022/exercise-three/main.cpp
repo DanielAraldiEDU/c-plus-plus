@@ -15,7 +15,7 @@ int main()
   cout << "Informe o valor da prova três:\n";
   cin >> thirdProve;
 
-  media = ((firstProve * 0.2) + (secondProve * 0.4) + (thirdProve * 0.6));
+  media = ((firstProve * 2) + (secondProve * 4) + (thirdProve * 6)) / 12;
 
   cout << "Informe o valor da média: " << media;
 
