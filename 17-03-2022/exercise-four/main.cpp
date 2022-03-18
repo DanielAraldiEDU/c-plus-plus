@@ -15,7 +15,7 @@ int main()
   cout << "Informe o valor segunda conta:\n";
   cin >> invoceTwo;
 
-  restSalary = salary - ((invoceOne * 1.02) + (invoceTwo * 1.02));
+  restSalary = salary - (invoceOne * 1.02) - (invoceTwo * 1.02);
 
   cout << "Restou " << restSalary << " do seu salário";
 
