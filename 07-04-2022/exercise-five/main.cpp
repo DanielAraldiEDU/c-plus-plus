@@ -22,11 +22,7 @@ int main()
     }
     else
     {
-
-      if (sideTop == sideLeft || sideTop == sideRight || sideLeft == sideRight)
-      {
-        cout << "O triâgulo é isósceles";
-      }
+      cout << "O triâgulo é isósceles";
     }
   }
 
