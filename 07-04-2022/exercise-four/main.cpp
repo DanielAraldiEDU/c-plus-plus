@@ -5,19 +5,20 @@ using namespace std;
 int main()
 {
   float firstProve, secondProve, thirdProve, media;
+  string name;
 
-  cout << "Digite as notas a seguir:\n";
-  cin >> firstProve >> secondProve >> thirdProve;
+  cout << "Digite seu nome e as suas notas a seguir:\n";
+  cin >> name >> firstProve >> secondProve >> thirdProve;
 
   media = (firstProve + secondProve + thirdProve) / 3;
 
   if (media >= 6)
   {
-    cout << "Você foi aprovado!";
+    cout << name << " você foi aprovado!";
   }
   else
   {
-    cout << "Você foi reprovado!";
+    cout << name << " você foi reprovado!";
   }
 
   return 0;
