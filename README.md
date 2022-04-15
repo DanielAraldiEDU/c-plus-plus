@@ -9,6 +9,6 @@ Repositório destinado para as aulas de C++ na [Univali Itajaí](https://www.uni
 1. Entre na pasta do exercício
 2. Execute o seguinte comando:
 
-```sh
-cd "c:\YOUR_DIR\c-plus-plus\17-03-2022\SOME_EXERCISE\" && g++ main.cpp -o main && "c:\YOUR_DIR\c-plus-plus\17-03-2022\SOME_EXERCISE\"main
+```cmd
+cd "c:\YOUR_DIR\c-plus-plus\FORDER_EXERCISE\SOME_EXERCISE\" && g++ main.cpp -o main && "c:\YOUR_DIR\c-plus-plus\FORDER_EXERCISE\SOME_EXERCISE\"main
 ```
