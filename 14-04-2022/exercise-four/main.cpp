@@ -4,8 +4,7 @@ using namespace std;
 
 int main()
 {
-  int age;
-  int ageBiggestEigtheen = 0;
+  int age, ageBiggestEigtheen = 0;
 
   for (int i = 0; i < 10; i++)
   {
