@@ -29,7 +29,7 @@ int main()
 
   cout << "\nO menor número é: " << smallestNumber;
   cout << "\nO maior número é: " << higherNumber;
-  cout << "\nA média dos valores é " << media;
+  cout << "\nA média dos valores é: " << media;
 
   return 0;
 }
