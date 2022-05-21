@@ -6,14 +6,14 @@ using namespace std;
 
 int main()
 {
-  int headquarters[AMOUNT][AMOUNT];
+  int matrix[AMOUNT][AMOUNT];
 
   for (int i = 0; i < AMOUNT; i++)
   {
     for (int j = 0; j < AMOUNT; j++)
     {
-      headquarters[i][j] = 1;
-      cout << headquarters[i][j] << "\t";
+      matrix[i][j] = 1;
+      cout << matrix[i][j] << "\t";
     }
 
     cout << endl;

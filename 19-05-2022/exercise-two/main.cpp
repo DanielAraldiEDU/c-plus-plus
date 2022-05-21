@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-  int headquarters[AMOUNT][AMOUNT];
+  int matrix[AMOUNT][AMOUNT];
 
   for (int i = 0; i < AMOUNT; i++)
   {
@@ -14,14 +14,14 @@ int main()
     {
       if (i == j)
       {
-        headquarters[i][j] = 1;
+        matrix[i][j] = 1;
       }
       else
       {
-        headquarters[i][j] = 0;
+        matrix[i][j] = 0;
       }
 
-      cout << headquarters[i][j] << "\t";
+      cout << matrix[i][j] << "\t";
     }
 
     cout << endl;
