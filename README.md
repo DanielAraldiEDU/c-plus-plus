@@ -4,6 +4,8 @@
 
 Repositório destinado para as aulas de C++ na [Univali Itajaí](https://www.univali.br/Paginas/default.aspx).
 
+<hr></hr>
+
 #### Como executar?
 
 1. Entre na pasta do exercício
