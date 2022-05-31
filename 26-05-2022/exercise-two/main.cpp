@@ -26,7 +26,7 @@ int main()
     }
   }
 
-  cout << "\nResultado da soma matricial:\n";
+  cout << "\nResultado da soma do produto matricial:\n";
 
   for (int i = 0; i < 4; i++)
   {
