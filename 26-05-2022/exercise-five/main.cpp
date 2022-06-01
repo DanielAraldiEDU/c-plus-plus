@@ -4,13 +4,13 @@ using namespace std;
 
 int main()
 {
-  float A[4][6], B[6][4], C[4][4];
+  float A[3][5], B[3][5], C[3][5];
 
   cout << "Digite os números para a matriz A:\n";
 
-  for (int i = 0; i < 4; i++)
+  for (int i = 0; i < 3; i++)
   {
-    for (int j = 0; j < 6; j++)
+    for (int j = 0; j < 5; j++)
     {
       cin >> A[i][j];
     }
@@ -18,9 +18,9 @@ int main()
 
   cout << "\nDigite os números para a matriz B:\n";
 
-  for (int i = 0; i < 6; i++)
+  for (int i = 0; i < 3; i++)
   {
-    for (int j = 0; j < 4; j++)
+    for (int j = 0; j < 5; j++)
     {
       cin >> B[i][j];
     }
@@ -28,9 +28,9 @@ int main()
 
   cout << "\nResultado da soma matricial:\n";
 
-  for (int i = 0; i < 4; i++)
+  for (int i = 0; i < 3; i++)
   {
-    for (int j = 0; j < 4; j++)
+    for (int j = 0; j < 5; j++)
     {
       C[i][j] = A[i][j] + B[i][j];
 
@@ -38,6 +38,20 @@ int main()
     }
 
     cout << endl;
+  }
+
+  cout << "\nTodos os elementos da linha 2:\n";
+
+  for (int i = 0; i < 5; i++)
+  {
+    cout << C[2][i] << endl;
+  }
+
+  cout << "\nTodos os elementos da coluna 3:\n";
+
+  for (int i = 0; i < 3; i++)
+  {
+    cout << C[i][3] << endl;
   }
 
   return 0;
