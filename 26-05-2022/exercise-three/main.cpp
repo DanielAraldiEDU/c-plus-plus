@@ -17,26 +17,21 @@ int main()
     {
       cin >> matrix[i][j];
 
-      if (matrix[i][j] > maximumValue)
+      if ((i == 0 && j == 0) || (matrix[i][j] > maximumValue))
       {
         maximumValue = matrix[i][j];
         rowPosition = i;
         columnPosition = j;
-
-        for (int k = 0; k < AMOUNT; k++)
-        {
-          if (k == 0)
-          {
-            minimumValue = matrix[rowPosition][k];
-          }
-
-          if (matrix[rowPosition][k] < minimumValue)
-          {
-            minimumValue = matrix[rowPosition][k];
-            columnPosition = k;
-          }
-        }
       }
+    }
+  }
+
+  for (int i = 0; i < AMOUNT; i++)
+  {
+    if (i == 0 || (minimumValue > matrix[rowPosition][i]))
+    {
+      minimumValue = matrix[rowPosition][i];
+      columnPosition = i;
     }
   }
 
