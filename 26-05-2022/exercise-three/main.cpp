@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-  float matrix[AMOUNT][AMOUNT] = {}, maximumValue, minimumValue;
+  float matrix[AMOUNT][AMOUNT], maximumValue, minimumValue;
   int rowPosition, columnPosition;
 
   cout << "Digite os números da matriz:" << endl;
