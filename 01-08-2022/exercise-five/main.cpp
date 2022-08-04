@@ -2,14 +2,17 @@
 
 using namespace std;
 
-#define height 4
-#define width 6
-
 int main()
 {
-  float area = (width * height) * 2;
+  float width;
 
-  cout << "Área quadrada dobrada: " << area;
+  cout << "Digite a largura do quadrado:\n";
+  cin >> width;
+
+  float result = width * 4;
+
+  cout << "Largura ao quadrado:\n";
+  cout << result;
 
   return 0;
 }
