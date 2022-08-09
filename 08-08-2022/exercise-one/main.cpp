@@ -33,6 +33,16 @@ void changeNumberByReferente(int &number)
   number++;
 }
 
+int multiply(int firstNumber, int secondNumber)
+{
+  return firstNumber * secondNumber;
+}
+
+int multiply(double firstNumber, double secondNumber)
+{
+  return firstNumber * secondNumber;
+}
+
 int main()
 {
   int staticValue = getStaticValue(115);
@@ -44,6 +54,11 @@ int main()
   bool isPair = checkIfIsPair(staticValue);
   bool isPrime = checkIfIsPrime(staticValue);
 
+  int multiplyWithInteger = multiply(staticValue, 2); // the two values must be integers
+  int multiplyWithDouble = multiply(155.5, 2.5);      // the two values must be doubles
+
+  cout << "Interger multiplied: " << multiplyWithInteger << endl;
+  cout << "Double multiplied: " << multiplyWithDouble << endl;
   cout << "Memory position of the static value: " << &staticValue << endl;
   cout << "Static value: " << staticValue << endl;
   cout << "It's pair? " << (isPair ? "true" : "false") << endl;
