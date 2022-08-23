@@ -1,4 +1,5 @@
 #include <iostream>
+#include "main.h"
 
 #define FIVE_TIMES 5
 #define THREE_TIMES 3
