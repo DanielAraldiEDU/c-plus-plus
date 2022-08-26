@@ -18,9 +18,11 @@ void getNumber(T number)
   cout << number;
 }
 
+using Number = Numbers;
+
 int main()
 {
-  Numbers number = Numbers::TEN;
-  getNumber<Numbers>(number);
+  Number number = Numbers::TEN;
+  getNumber<Number>(number);
   return 0;
 }
