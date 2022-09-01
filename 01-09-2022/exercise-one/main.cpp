@@ -12,9 +12,12 @@ int main()
   if (file.is_open())
   {
     file << "### File.md\n\nCreating or wrinting if exists on file.md\n";
+    file.close();
   }
-
-  file.close();
+  else
+  {
+    cout << "File not found!";
+  }
 
   return 0;
 }
