@@ -8,7 +8,12 @@ int main()
   ofstream file;
 
   file.open("file.md");
-  file << "### File.md\n\nCreating or wrinting if exists on file.md\n";
+
+  if (file.is_open())
+  {
+    file << "### File.md\n\nCreating or wrinting if exists on file.md\n";
+  }
+
   file.close();
 
   return 0;
