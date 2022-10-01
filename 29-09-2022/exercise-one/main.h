@@ -1,0 +1,1 @@
+int compare(const void *value, const void *valueToCompare);
