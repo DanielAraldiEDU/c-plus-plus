@@ -1,0 +1,1 @@
+int potency(int base, int exponent);
