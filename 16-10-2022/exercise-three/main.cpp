@@ -5,7 +5,7 @@ using namespace std;
 
 int potency(int base, int exponent)
 {
-  return exponent == 1 ? (base * exponent) : base * potency(base, exponent - 1);
+  return exponent == 1 ? base : base * potency(base, exponent - 1);
 }
 
 int main()
