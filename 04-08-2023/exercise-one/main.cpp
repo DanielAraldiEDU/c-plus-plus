@@ -50,28 +50,24 @@ bool insert(List &list, char value, char sort = ' ') {
     return true;
 }
 
-// lista => lista a ser usada na pesquisa
-// valor => valor a ser procurado
-// retorna a posição do valor ou -1 se não achou
 int search(List list, char value) {
+    for (int index = 0; index <= list.lastIndex; index++) {
+        if (list.array[index] == value) return index;
+    }
+    
+    return -1;
 }
 
 bool remove(List &list, char value) {
-    bool wasRemoved = false;
+    int valueIndexFound = search(list, value);
+    if (valueIndexFound == -1) return false;
     
-    for(int index = 0; index <= list.lastIndex; index++) { 
-        if (list.array[index] == value) {
-            wasRemoved = true;
-            list.lastIndex--;
-            for(int auxiliarIndex = index; auxiliarIndex <= list.lastIndex; auxiliarIndex++) { 
-                list.array[auxiliarIndex] = list.array[auxiliarIndex + 1];
-            }
-            
-            return wasRemoved;
-        }
+    list.lastIndex--;
+    for (int index = valueIndexFound; index <= list.lastIndex; index++) { 
+        list.array[index] = list.array[index + 1];
     }
     
-    return wasRemoved;
+    return true;
 }
 
 bool remove(List &list, int position) {
@@ -107,7 +103,7 @@ int main() {
     insert(list, 'C');
     insert(list, 'O');
 
-    const bool wasRemoved = remove(list, 'O');
+    const bool wasRemoved = remove(list, 'M');
     cout << (wasRemoved ? "true" : "false") << endl;
     
     cout << "List: ";
