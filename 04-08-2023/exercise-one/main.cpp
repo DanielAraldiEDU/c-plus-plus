@@ -56,10 +56,22 @@ bool insert(List &list, char value, char sort = ' ') {
 int search(List list, char value) {
 }
 
-// lista => lista a ser usada na retirada
-// valor => valor a ser retirado
-// retorna true (retirada ok) ou false (retirada falhou)
 bool remove(List &list, char value) {
+    bool wasRemoved = false;
+    
+    for(int index = 0; index <= list.lastIndex; index++) { 
+        if (list.array[index] == value) {
+            wasRemoved = true;
+            list.lastIndex--;
+            for(int auxiliarIndex = index; auxiliarIndex <= list.lastIndex; auxiliarIndex++) { 
+                list.array[auxiliarIndex] = list.array[auxiliarIndex + 1];
+            }
+            
+            return wasRemoved;
+        }
+    }
+    
+    return wasRemoved;
 }
 
 bool remove(List &list, int position) {
@@ -95,7 +107,7 @@ int main() {
     insert(list, 'C');
     insert(list, 'O');
 
-    const bool wasRemoved = remove(list, 10);
+    const bool wasRemoved = remove(list, 'O');
     cout << (wasRemoved ? "true" : "false") << endl;
     
     cout << "List: ";
