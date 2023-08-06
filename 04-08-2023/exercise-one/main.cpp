@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#define MAXIMUM 20
+#define MAXIMUM 1000
 
 struct List {
     char array[MAXIMUM];
@@ -13,7 +13,6 @@ void initialize(List &list) {
     list.lastIndex = -1;
 }
 
-// sort default: '' - (no sort) | 'C' - crescent | 'D' - decrescent
 bool insert(List &list, char value, char sort = ' ') {
     int position;
     
@@ -95,12 +94,27 @@ bool remove(List &list, int position) {
 
 void show(List list) {
     for(int index = 0; index <= list.lastIndex; index++) { 
-        cout << list.array[index] << " ";
+        cout << list.array[index] << "";
     }
 }
 
 List clone(List list) {
     List newList = list;
+    return newList;
+}
+
+List concat(List firstList, List secondList, char sort = ' ') {
+    List newList;
+    
+    initialize(newList);
+    
+    for (int index = 0; index <= firstList.lastIndex; index++) {
+        insert(newList, firstList.array[index], sort);
+    }
+    for (int index = 0; index <= secondList.lastIndex; index++) {
+        insert(newList, secondList.array[index], sort);
+    }
+    
     return newList;
 }
 
@@ -119,9 +133,6 @@ int main() {
     insert(list, 'U');
     insert(list, 'C');
     insert(list, 'O');
-
-    const bool wasRemoved = removeAll(list, 'P');
-    cout << (wasRemoved ? "true" : "false") << endl;
     
     cout << "List: ";
     show(list);
@@ -129,4 +140,8 @@ int main() {
     List newList = clone(list);
     cout << endl << "New list: ";
     show(newList);
+    
+    List concatedList = concat(list, newList, 'C');
+    cout << endl << "Concated list: ";
+    show(concatedList);
 }
