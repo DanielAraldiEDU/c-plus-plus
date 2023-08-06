@@ -58,22 +58,6 @@ int search(List list, char value) {
     return -1;
 }
 
-bool removeAll(List &list, char value) {
-    int amountTimesFound = 0;
-    int valueIndexFound = search(list, value);
-    while (valueIndexFound != -1) {
-        amountTimesFound++;
-        list.lastIndex--;
-        for (int index = valueIndexFound; index <= list.lastIndex; index++) { 
-            list.array[index] = list.array[index + 1];
-        }
-        
-        valueIndexFound = search(list, value);
-    }
-    
-    return amountTimesFound == 0 ? false : true;
-}
-
 bool remove(List &list, char value) {
     const int valueIndexFound = search(list, value);
     if (valueIndexFound == -1) return false;
@@ -84,6 +68,18 @@ bool remove(List &list, char value) {
     }
     
     return true;
+}
+
+bool removeAll(List &list, char value) {
+    int amountTimesFound = 0;
+    int valueIndexFound = search(list, value);
+    while (valueIndexFound != -1) {
+        amountTimesFound++;
+        remove(list, value);
+        valueIndexFound = search(list, value);
+    }
+    
+    return amountTimesFound == 0 ? false : true;
 }
 
 bool remove(List &list, int position) {
@@ -103,6 +99,11 @@ void show(List list) {
     }
 }
 
+List clone(List list) {
+    List newList = list;
+    return newList;
+}
+
 int main() {
     List list;
     
@@ -119,9 +120,13 @@ int main() {
     insert(list, 'C');
     insert(list, 'O');
 
-    const bool wasRemoved = remove(list, 'P');
+    const bool wasRemoved = removeAll(list, 'P');
     cout << (wasRemoved ? "true" : "false") << endl;
     
     cout << "List: ";
     show(list);
+    
+    List newList = clone(list);
+    cout << endl << "New list: ";
+    show(newList);
 }
