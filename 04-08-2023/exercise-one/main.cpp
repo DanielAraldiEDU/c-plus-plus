@@ -58,8 +58,24 @@ int search(List list, char value) {
     return -1;
 }
 
-bool remove(List &list, char value) {
+bool removeAll(List &list, char value) {
+    int amountTimesFound = 0;
     int valueIndexFound = search(list, value);
+    while (valueIndexFound != -1) {
+        amountTimesFound++;
+        list.lastIndex--;
+        for (int index = valueIndexFound; index <= list.lastIndex; index++) { 
+            list.array[index] = list.array[index + 1];
+        }
+        
+        valueIndexFound = search(list, value);
+    }
+    
+    return amountTimesFound == 0 ? false : true;
+}
+
+bool remove(List &list, char value) {
+    const int valueIndexFound = search(list, value);
     if (valueIndexFound == -1) return false;
     
     list.lastIndex--;
@@ -103,7 +119,7 @@ int main() {
     insert(list, 'C');
     insert(list, 'O');
 
-    const bool wasRemoved = remove(list, 'M');
+    const bool wasRemoved = remove(list, 'P');
     cout << (wasRemoved ? "true" : "false") << endl;
     
     cout << "List: ";
