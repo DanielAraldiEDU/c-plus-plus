@@ -118,6 +118,18 @@ List concat(List firstList, List secondList, char sort = ' ') {
     return newList;
 }
 
+List reverse(List list) {
+    List auxiliarList = clone(list);
+    
+    int positionReverseIndex = list.lastIndex;
+    for (int index = 0; index <= list.lastIndex; index++) {
+        list.array[index] = auxiliarList.array[positionReverseIndex];
+        positionReverseIndex--;
+    }
+    
+    return list;
+}
+
 int main() {
     List list;
     
@@ -144,4 +156,8 @@ int main() {
     List concatedList = concat(list, newList, 'C');
     cout << endl << "Concated list: ";
     show(concatedList);
+    
+    List reversedList = reverse(concatedList);
+    cout << endl << "Reversed list: ";
+    show(reversedList);
 }
