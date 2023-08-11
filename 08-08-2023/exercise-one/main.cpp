@@ -77,6 +77,16 @@ bool insertLue(Lue &list, char value) {
     return true;
 }
 
+Node* search(Lue list, char value) {
+    Node *auxiliar = list.start;
+
+    while (auxiliar->data != value) {
+        auxiliar = auxiliar->connect;
+        if (auxiliar == NULL) return NULL;
+    }
+    
+    return auxiliar;
+}
 
 int main() {
     Lue lue;
@@ -96,6 +106,8 @@ int main() {
 
     cout << endl << "Lista: ";
     showLue(lue);
+    
+    cout<< endl << search(lue, 'P');
 
     resetLue(lue);
     
