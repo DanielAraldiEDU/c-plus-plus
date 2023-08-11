@@ -12,15 +12,80 @@ struct Lue {
     Node *end;
 };
 
-void initialize(Lue &list) {
-    list.start = NULL;
-    list.end = NULL;
+void initialize(Lue &lue) {
+    lue.start = NULL;
+    lue.end = NULL;
 }
 
-int main() {
-    Lue list;
+void resetLue(Lue &list) {
+    Node *auxiliar = list.start;
+    Node *otherAuxiliar;
+
+    while (auxiliar != NULL) {
+        otherAuxiliar = auxiliar->connect;
+        delete auxiliar;
+        auxiliar = otherAuxiliar;
+    }
+}
+
+void showLue(Lue &list) {
+    Node *auxiliar = list.start;
+
+    while (auxiliar != NULL) {
+        cout << auxiliar->data << " ";
+        auxiliar = auxiliar->connect;
+    }
+}
+
+bool insertLue(Lue &list, char value) {
+    Node *newNode = new Node;
+    if (newNode == NULL) return false;
     
-    initialize(list);
+    newNode->data = value;
+    newNode->connect = NULL;
+
+    if (list.start == NULL) {
+        list.start = newNode;
+        list.end = newNode;
+        return true;
+    }
+
+    if (value < list.start->data) {
+        newNode->connect = list.start;
+        list.start = newNode;
+        return true;
+    }
+
+    if (value > list.end->data){
+        list.end->connect = newNode;
+        list.end = newNode;
+        return true;
+    }
+    
+    return true;
+}
+
+
+int main() {
+    Lue lue;
+    
+    initialize(lue);
+    
+    insertLue(lue, 'P');
+    insertLue(lue, 'E');
+    insertLue(lue, 'R');
+    insertLue(lue, 'N');
+    insertLue(lue, 'A');
+    insertLue(lue, 'M');
+    insertLue(lue, 'B');
+    insertLue(lue, 'U');
+    insertLue(lue, 'C');
+    insertLue(lue, 'O');
+
+    cout << endl << "Lista: ";
+    showLue(lue);
+
+    resetLue(lue);
     
     return 0;
 }
