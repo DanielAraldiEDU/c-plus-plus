@@ -44,7 +44,7 @@ bool insertLue(Lue &list, char value) {
     newNode->data = value;
     newNode->connect = NULL;
 
-    if (list.start == NULL) {
+    if (list.start == NULL || list.end == NULL) {
         list.start = newNode;
         list.end = newNode;
         return true;
@@ -61,6 +61,15 @@ bool insertLue(Lue &list, char value) {
         list.end = newNode;
         return true;
     }
+    
+    Node *auxiliar = list.start;
+
+    while (auxiliar->data < value && auxiliar->connect->data < value) {
+        auxiliar = auxiliar->connect;
+    }
+    
+    newNode->connect = auxiliar->connect;
+    auxiliar->connect = newNode;
     
     return true;
 }
