@@ -44,19 +44,22 @@ bool insertLue(Lue &list, char value) {
     newNode->data = value;
     newNode->connect = NULL;
 
-    if (list.start == NULL || list.end == NULL) {
+    const bool isEmptyList = list.start == NULL || list.end == NULL;
+    if (isEmptyList) {
         list.start = newNode;
         list.end = newNode;
         return true;
     }
 
-    if (value < list.start->data) {
+    const bool isFirstNode = value < list.start->data;
+    if (isFirstNode) {
         newNode->connect = list.start;
         list.start = newNode;
         return true;
     }
 
-    if (value > list.end->data){
+    const bool isLastNode = value > list.end->data;
+    if (isLastNode){
         list.end->connect = newNode;
         list.end = newNode;
         return true;
