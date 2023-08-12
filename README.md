@@ -14,3 +14,5 @@ Repositório destinado para as aulas de C++ na [Univali Itajaí](https://www.uni
 ```cmd
 cd "c:\YOUR_DIR\c-plus-plus\FORDER_EXERCISE\SOME_EXERCISE\" && g++ main.cpp -o main && "c:\YOUR_DIR\c-plus-plus\FORDER_EXERCISE\SOME_EXERCISE\"main
 ```
+
+> Ou use o [cpp.sh](https://cpp.sh/) para rodar o código de um único arquivo em sua máquina.
