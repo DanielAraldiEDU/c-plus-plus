@@ -17,7 +17,7 @@ void initialize(Lue &lue) {
     lue.end = NULL;
 }
 
-void resetLue(Lue &list) {
+void reset(Lue &list) {
     Node *auxiliar = list.start;
     Node *otherAuxiliar;
 
@@ -28,7 +28,7 @@ void resetLue(Lue &list) {
     }
 }
 
-void showLue(Lue &list) {
+void show(Lue &list) {
     Node *auxiliar = list.start;
 
     while (auxiliar != NULL) {
@@ -37,7 +37,7 @@ void showLue(Lue &list) {
     }
 }
 
-bool insertLue(Lue &list, char value) {
+bool insert(Lue &list, char value) {
     Node *newNode = new Node;
     if (newNode == NULL) return false;
     
@@ -88,28 +88,57 @@ Node* search(Lue list, char value) {
     return auxiliar;
 }
 
+bool remove(Lue &list, char value) {
+    Node *auxiliar = list.start, *previous = NULL;
+    
+    while (auxiliar != NULL && auxiliar->data != value) {
+        previous = auxiliar;
+        auxiliar = auxiliar->connect;
+    }
+    
+    if (auxiliar == NULL) return false;
+    
+    if (auxiliar == list.start) {
+        list.start = list.start->connect;
+        if (auxiliar == list.end) list.end = NULL;
+    } else {
+        previous->connect = auxiliar->connect;
+        if (auxiliar == list.end) list.end = previous;
+    }
+    
+    delete auxiliar;
+    return true;
+}
+
 int main() {
     Lue lue;
     
     initialize(lue);
     
-    insertLue(lue, 'P');
-    insertLue(lue, 'E');
-    insertLue(lue, 'R');
-    insertLue(lue, 'N');
-    insertLue(lue, 'A');
-    insertLue(lue, 'M');
-    insertLue(lue, 'B');
-    insertLue(lue, 'U');
-    insertLue(lue, 'C');
-    insertLue(lue, 'O');
+    insert(lue, 'P');
+    insert(lue, 'E');
+    insert(lue, 'R');
+    insert(lue, 'N');
+    insert(lue, 'A');
+    insert(lue, 'M');
+    insert(lue, 'B');
+    insert(lue, 'U');
+    insert(lue, 'C');
+    insert(lue, 'O');
 
-    cout << endl << "Lista: ";
-    showLue(lue);
+    cout << "List: ";
+    show(lue);
     
     cout<< endl << search(lue, 'P');
 
-    resetLue(lue);
+    remove(lue, 'A');
+    remove(lue, 'E');
+    remove(lue, 'O');
+    remove(lue, 'U');
+    cout << endl << "Removed list: ";
+    show(lue);
+    
+    reset(lue);
     
     return 0;
 }
