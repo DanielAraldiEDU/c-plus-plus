@@ -8,8 +8,7 @@ struct Node {
 };
 
 struct Lue {
-    Node *start;
-    Node *end;
+    Node *start, *end;
 };
 
 void initialize(Lue &lue) {
