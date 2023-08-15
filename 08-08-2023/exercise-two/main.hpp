@@ -2,23 +2,27 @@
 
 using namespace std;
 
+template <typename T>
 struct Node {
-    char data;
+    T data;
     Node *next, *previous;
 };
 
+template <typename T>
 struct Lde {
-    Node *start, *end;
+    Node<T> *start, *end;
 };
 
-void initialize(Lde &lde) {
+template <typename T>
+void initialize(Lde<T> &lde) {
     lde.start = NULL;
     lde.end = NULL;
 }
 
-void reset(Lde &list) {
-    Node *auxiliar = list.start;
-    Node *otherAuxiliar;
+template <typename T>
+void reset(Lde<T> &list) {
+    Node<T> *auxiliar = list.start;
+    Node<T> *otherAuxiliar;
 
     while (auxiliar != NULL) {
         otherAuxiliar = auxiliar->next;
@@ -27,8 +31,9 @@ void reset(Lde &list) {
     }
 }
 
-void show(Lde &list, char sort = 'C') {
-    Node *auxiliar = sort == 'C' ? list.start : list.end;
+template <typename T>
+void show(Lde<T> &list, char sort = 'C') {
+    Node<T> *auxiliar = sort == 'C' ? list.start : list.end;
     
     while (auxiliar != NULL) {
         cout << auxiliar->data << " ";
@@ -38,16 +43,16 @@ void show(Lde &list, char sort = 'C') {
     if (list.start == NULL) return;
 }
 
-bool insert(Lde &list, char value) {
-    Node *newNode = new Node;
+template <typename T>
+bool insert(Lde<T> &list, T value) {
+    Node<T> *newNode = new Node<T>;
     if (newNode == NULL) return false;
     
     newNode->data = value;
     newNode->next = NULL;
     newNode->previous = NULL;
 
-    const bool isEmptyList = list.start == NULL || list.end == NULL;
-    if (isEmptyList) {
+    if (list.start == NULL) {
         list.start = newNode;
         list.end = newNode;
         return true;
@@ -69,48 +74,74 @@ bool insert(Lde &list, char value) {
         return true;
     }
     
-    Node *auxiliar = list.start;
-    while (auxiliar->data < value && auxiliar->previous->data < value) {
-        auxiliar = auxiliar->previous;
+    Node<T> *auxiliarPrevious = list.start;
+    while (auxiliarPrevious->data < value && auxiliarPrevious->next->data < value) {
+        auxiliarPrevious = auxiliarPrevious->next;
     }
     
-    newNode->previous = auxiliar;
-    newNode->next = auxiliar->next;
-    auxiliar->next->previous = newNode;
-    auxiliar->next = newNode;
+    Node<T> *auxiliarNext = auxiliarPrevious->next;
+    newNode->previous = auxiliarPrevious;
+    newNode->next = auxiliarNext;
+    auxiliarPrevious->next = newNode;
+    auxiliarNext->previous = newNode;
     return true;
 }
 
-Node* search(Lde list, char value, char sort = 'C') {
-    Node *auxiliar = sort == 'C' ? list.start : list.end;
-
-    while (auxiliar->data != value) {
-        auxiliar = sort == 'C' ? auxiliar->next : auxiliar->previous;
-        if (auxiliar == NULL) return NULL;
-    }
+template <typename T>
+bool insertEnd(Lde<T> &list, T value) {
+    Node<T> *newNode = new Node<T>;
+    if (newNode == NULL) return false;
     
-    return auxiliar;
+    newNode->data = value;
+    newNode->previous = NULL;
+    newNode->next = NULL;
+
+    if (list.start == NULL) {
+        list.start = newNode;
+        list.end = newNode;
+        return true;
+    }
+
+    list.end->next = newNode;
+    newNode->previous = list.end;
+    list.end = newNode;
+    return true;
 }
 
-// TODO: Adapter to next and previous
-// bool remove(Lde &list, char value) {
-//     Node *auxiliar = list.start, *previous = NULL;
+template <typename T>
+Node<T>* search(Lde<T> list, T value) {
+    Node<T> *auxiliar = list.start;
+
+    while (auxiliar != NULL) {
+        if (auxiliar->data == value) return auxiliar;
+        auxiliar = auxiliar->previous;
+    }
     
-//     while (auxiliar != NULL && auxiliar->data != value) {
-//         previous = auxiliar;
-//         auxiliar = auxiliar->connect;
-//     }
+    return NULL;
+}
+
+template <typename T>
+bool remove(Lde<T> &list, T value) {
+    Node<T> *auxiliar, *previousAuxiliar, *nextAuxiliar;
+
+cout << "AQUI";
+    auxiliar = search(list, value);
+
+    if( auxiliar == NULL ) return false;
+    previousAuxiliar = auxiliar->previous;
+    nextAuxiliar = auxiliar->next;
+
+
+    if (auxiliar == list.start) {
+        list.start = nextAuxiliar;
+        if (auxiliar == list.end) list.end = NULL;
+        else nextAuxiliar->previous = NULL;
+    } else {
+        previousAuxiliar->next = auxiliar->next;
+        if (auxiliar == list.end) list.end = previousAuxiliar;
+        else nextAuxiliar->previous = previousAuxiliar;
+    }
     
-//     if (auxiliar == NULL) return false;
-    
-//     if (auxiliar == list.start) {
-//         list.start = list.start->connect;
-//         if (auxiliar == list.end) list.end = NULL;
-//     } else {
-//         previous->connect = auxiliar->connect;
-//         if (auxiliar == list.end) list.end = previous;
-//     }
-    
-//     delete auxiliar;
-//     return true;
-// }
+    delete auxiliar;
+    return true;
+}
