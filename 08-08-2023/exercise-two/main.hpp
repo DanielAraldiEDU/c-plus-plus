@@ -124,7 +124,6 @@ template <typename T>
 bool remove(Lde<T> &list, T value) {
     Node<T> *auxiliar, *previousAuxiliar, *nextAuxiliar;
 
-cout << "AQUI";
     auxiliar = search(list, value);
 
     if( auxiliar == NULL ) return false;
