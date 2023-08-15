@@ -7,16 +7,16 @@ struct Node {
     Node *next, *previous;
 };
 
-struct Lue {
+struct Lde {
     Node *start, *end;
 };
 
-void initialize(Lue &lue) {
-    lue.start = NULL;
-    lue.end = NULL;
+void initialize(Lde &lde) {
+    lde.start = NULL;
+    lde.end = NULL;
 }
 
-void reset(Lue &list) {
+void reset(Lde &list) {
     Node *auxiliar = list.start;
     Node *otherAuxiliar;
 
@@ -27,7 +27,7 @@ void reset(Lue &list) {
     }
 }
 
-void show(Lue &list, char sort = 'C') {
+void show(Lde &list, char sort = 'C') {
     Node *auxiliar = sort == 'C' ? list.start : list.end;
     
     while (auxiliar != NULL) {
@@ -38,7 +38,7 @@ void show(Lue &list, char sort = 'C') {
     if (list.start == NULL) return;
 }
 
-bool insert(Lue &list, char value) {
+bool insert(Lde &list, char value) {
     Node *newNode = new Node;
     if (newNode == NULL) return false;
     
@@ -81,7 +81,7 @@ bool insert(Lue &list, char value) {
     return true;
 }
 
-Node* search(Lue list, char value, char sort = 'C') {
+Node* search(Lde list, char value, char sort = 'C') {
     Node *auxiliar = sort == 'C' ? list.start : list.end;
 
     while (auxiliar->data != value) {
@@ -93,7 +93,7 @@ Node* search(Lue list, char value, char sort = 'C') {
 }
 
 // TODO: Adapter to next and previous
-// bool remove(Lue &list, char value) {
+// bool remove(Lde &list, char value) {
 //     Node *auxiliar = list.start, *previous = NULL;
     
 //     while (auxiliar != NULL && auxiliar->data != value) {
@@ -116,34 +116,34 @@ Node* search(Lue list, char value, char sort = 'C') {
 // }
 
 int main() {
-    Lue lue;
+    Lde lde;
     
-    initialize(lue);
+    initialize(lde);
     
-    insert(lue, 'P');
-    insert(lue, 'E');
-    insert(lue, 'R');
-    insert(lue, 'N');
-    insert(lue, 'A');
-    insert(lue, 'M');
-    insert(lue, 'B');
-    insert(lue, 'U');
-    insert(lue, 'C');
-    insert(lue, 'O');
+    insert(lde, 'P');
+    insert(lde, 'E');
+    insert(lde, 'R');
+    insert(lde, 'N');
+    insert(lde, 'A');
+    insert(lde, 'M');
+    insert(lde, 'B');
+    insert(lde, 'U');
+    insert(lde, 'C');
+    insert(lde, 'O');
 
     cout << "List: ";
-    show(lue);
+    show(lde);
     
-    cout<< endl << search(lue, 'P');
+    cout<< endl << search(lde, 'P');
 
-    // remove(lue, 'A');
-    // remove(lue, 'E');
-    // remove(lue, 'O');
-    // remove(lue, 'U');
+    // remove(lde, 'A');
+    // remove(lde, 'E');
+    // remove(lde, 'O');
+    // remove(lde, 'U');
     cout << endl << "Removed list: ";
-    show(lue);
+    show(lde);
     
-    reset(lue);
+    reset(lde);
     
     return 0;
 }
