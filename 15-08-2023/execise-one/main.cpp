@@ -50,14 +50,14 @@ bool insert(Lue &list, char value) {
         return true;
     }
 
-    const bool isFirstNode = value < list.start->data;
+    const bool isFirstNode = value <= list.start->data;
     if (isFirstNode) {
         newNode->connect = list.start;
         list.start = newNode;
         return true;
     }
 
-    const bool isLastNode = value > list.end->data;
+    const bool isLastNode = value >= list.end->data;
     if (isLastNode){
         list.end->connect = newNode;
         list.end = newNode;
@@ -66,7 +66,7 @@ bool insert(Lue &list, char value) {
     
     Node *auxiliar = list.start;
 
-    while (auxiliar->data < value && auxiliar->connect->data < value) {
+    while (auxiliar->data <= value && auxiliar->connect->data <= value) {
         auxiliar = auxiliar->connect;
     }
     
