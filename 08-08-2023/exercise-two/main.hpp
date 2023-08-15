@@ -58,7 +58,7 @@ bool insert(Lde<T> &list, T value) {
         return true;
     }
 
-    const bool isFirstNode = value < list.start->data;
+    const bool isFirstNode = value <= list.start->data;
     if (isFirstNode) {
         newNode->next = list.start;
         list.start->previous = newNode;
@@ -66,7 +66,7 @@ bool insert(Lde<T> &list, T value) {
         return true;
     }
 
-    const bool isLastNode = value > list.end->data;
+    const bool isLastNode = value >= list.end->data;
     if (isLastNode){
         list.end->next = newNode;
         newNode->previous = list.end;
@@ -75,7 +75,7 @@ bool insert(Lde<T> &list, T value) {
     }
     
     Node<T> *auxiliarPrevious = list.start;
-    while (auxiliarPrevious->data < value && auxiliarPrevious->next->data < value) {
+    while (auxiliarPrevious->data <= value && auxiliarPrevious->next->data <= value) {
         auxiliarPrevious = auxiliarPrevious->next;
     }
     
