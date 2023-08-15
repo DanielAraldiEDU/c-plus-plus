@@ -34,15 +34,17 @@ void show(Lue &list, char sort = 'C') {
         cout << auxiliar->data << " ";
         auxiliar = sort == 'C' ? auxiliar->next : auxiliar->previous;
     }
+    
+    if (list.start == NULL) return;
 }
 
-// TODO: Adapter to next and previous
 bool insert(Lue &list, char value) {
     Node *newNode = new Node;
     if (newNode == NULL) return false;
     
     newNode->data = value;
-    newNode->connect = NULL;
+    newNode->next = NULL;
+    newNode->previous = NULL;
 
     const bool isEmptyList = list.start == NULL || list.end == NULL;
     if (isEmptyList) {
@@ -53,27 +55,29 @@ bool insert(Lue &list, char value) {
 
     const bool isFirstNode = value < list.start->data;
     if (isFirstNode) {
-        newNode->connect = list.start;
+        newNode->next = list.start;
+        list.start->previous = newNode;
         list.start = newNode;
         return true;
     }
 
     const bool isLastNode = value > list.end->data;
     if (isLastNode){
-        list.end->connect = newNode;
+        list.end->next = newNode;
+        newNode->previous = list.end;
         list.end = newNode;
         return true;
     }
     
     Node *auxiliar = list.start;
-
-    while (auxiliar->data < value && auxiliar->connect->data < value) {
-        auxiliar = auxiliar->connect;
+    while (auxiliar->data < value && auxiliar->previous->data < value) {
+        auxiliar = auxiliar->previous;
     }
     
-    newNode->connect = auxiliar->connect;
-    auxiliar->connect = newNode;
-    
+    newNode->previous = auxiliar;
+    newNode->next = auxiliar->next;
+    auxiliar->next->previous = newNode;
+    auxiliar->next = newNode;
     return true;
 }
 
@@ -89,55 +93,55 @@ Node* search(Lue list, char value, char sort = 'C') {
 }
 
 // TODO: Adapter to next and previous
-bool remove(Lue &list, char value) {
-    Node *auxiliar = list.start, *previous = NULL;
+// bool remove(Lue &list, char value) {
+//     Node *auxiliar = list.start, *previous = NULL;
     
-    while (auxiliar != NULL && auxiliar->data != value) {
-        previous = auxiliar;
-        auxiliar = auxiliar->connect;
-    }
+//     while (auxiliar != NULL && auxiliar->data != value) {
+//         previous = auxiliar;
+//         auxiliar = auxiliar->connect;
+//     }
     
-    if (auxiliar == NULL) return false;
+//     if (auxiliar == NULL) return false;
     
-    if (auxiliar == list.start) {
-        list.start = list.start->connect;
-        if (auxiliar == list.end) list.end = NULL;
-    } else {
-        previous->connect = auxiliar->connect;
-        if (auxiliar == list.end) list.end = previous;
-    }
+//     if (auxiliar == list.start) {
+//         list.start = list.start->connect;
+//         if (auxiliar == list.end) list.end = NULL;
+//     } else {
+//         previous->connect = auxiliar->connect;
+//         if (auxiliar == list.end) list.end = previous;
+//     }
     
-    delete auxiliar;
-    return true;
-}
+//     delete auxiliar;
+//     return true;
+// }
 
 int main() {
     Lue lue;
     
     initialize(lue);
     
-    // insert(lue, 'P');
-    // insert(lue, 'E');
-    // insert(lue, 'R');
-    // insert(lue, 'N');
-    // insert(lue, 'A');
-    // insert(lue, 'M');
-    // insert(lue, 'B');
-    // insert(lue, 'U');
-    // insert(lue, 'C');
-    // insert(lue, 'O');
+    insert(lue, 'P');
+    insert(lue, 'E');
+    insert(lue, 'R');
+    insert(lue, 'N');
+    insert(lue, 'A');
+    insert(lue, 'M');
+    insert(lue, 'B');
+    insert(lue, 'U');
+    insert(lue, 'C');
+    insert(lue, 'O');
 
     cout << "List: ";
     show(lue);
     
-    // cout<< endl << search(lue, 'P');
+    cout<< endl << search(lue, 'P');
 
     // remove(lue, 'A');
     // remove(lue, 'E');
     // remove(lue, 'O');
     // remove(lue, 'U');
-    // cout << endl << "Removed list: ";
-    // show(lue);
+    cout << endl << "Removed list: ";
+    show(lue);
     
     reset(lue);
     
