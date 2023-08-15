@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-    Lde lde;
+    Lde<char> lde;
     
     initialize(lde);
     
@@ -25,11 +25,19 @@ int main() {
     
     cout<< endl << search(lde, 'P');
 
-    // remove(lde, 'A');
-    // remove(lde, 'E');
-    // remove(lde, 'O');
-    // remove(lde, 'U');
+    remove(lde, 'A');
+    remove(lde, 'E');
+    remove(lde, 'O');
+    remove(lde, 'U');
     cout << endl << "Removed list: ";
+    show(lde);
+    
+    insertEnd(lde, '1');
+    insertEnd(lde, '2');
+    insertEnd(lde, '3');
+    insertEnd(lde, '4');
+    insertEnd(lde, '5');
+    cout << endl << "List with values inserted on the final: ";
     show(lde);
     
     reset(lde);
