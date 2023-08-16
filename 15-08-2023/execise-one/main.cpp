@@ -135,6 +135,15 @@ bool compare(Lue firstList, Lue secondList) {
     return isEqual;
 }
 
+void copy(Lue &firstList, Lue secondList) {
+    Node *auxiliar = secondList.start;
+    
+    while (auxiliar != NULL) {
+        insert(firstList, auxiliar->data);
+        auxiliar = auxiliar->connect;
+    }
+}
+
 int main() {
     Lue lue;
     Lue otherLue;
@@ -162,6 +171,10 @@ int main() {
     
     insert(otherLue, 'P');
     cout << endl << "Lists are equal: " << (compare(lue, otherLue) ? "true" : "false");
+    
+    copy(lue, otherLue);
+    cout << "Copied list: ";
+    show(lue);
 
     remove(lue, 'A');
     remove(lue, 'E');
