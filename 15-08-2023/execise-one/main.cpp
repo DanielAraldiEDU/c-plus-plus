@@ -50,14 +50,14 @@ bool insert(Lue &list, char value) {
         return true;
     }
 
-    const bool isFirstNode = value <= list.start->data;
+    const bool isFirstNode = value < list.start->data;
     if (isFirstNode) {
         newNode->connect = list.start;
         list.start = newNode;
         return true;
     }
 
-    const bool isLastNode = value >= list.end->data;
+    const bool isLastNode = value > list.end->data;
     if (isLastNode){
         list.end->connect = newNode;
         list.end = newNode;
@@ -66,7 +66,7 @@ bool insert(Lue &list, char value) {
     
     Node *auxiliar = list.start;
 
-    while (auxiliar->data <= value && auxiliar->connect->data <= value) {
+    while (auxiliar->data < value && auxiliar->connect->data < value) {
         auxiliar = auxiliar->connect;
     }
     
@@ -121,10 +121,26 @@ int size(Lue list) {
     return couter;
 }
 
+bool compare(Lue firstList, Lue secondList) {
+    Node *auxiliar = firstList.start;
+    Node *otherAuxiliar = secondList.start;
+    bool isEqual = true;
+    
+    while (auxiliar != NULL || otherAuxiliar != NULL) {
+        if (auxiliar->data != otherAuxiliar->data) return false;
+        auxiliar = auxiliar->connect;
+        otherAuxiliar = otherAuxiliar->connect;
+    }
+    
+    return isEqual;
+}
+
 int main() {
     Lue lue;
+    Lue otherLue;
     
     initialize(lue);
+    initialize(otherLue);
     
     insert(lue, 'P');
     insert(lue, 'E');
@@ -142,7 +158,10 @@ int main() {
     
     cout << endl << "List size: " << size(lue);
     
-    cout<< endl << search(lue, 'P');
+    cout << endl << search(lue, 'P');
+    
+    insert(otherLue, 'P');
+    cout << endl << "Lists are equal: " << (compare(lue, otherLue) ? "true" : "false");
 
     remove(lue, 'A');
     remove(lue, 'E');
