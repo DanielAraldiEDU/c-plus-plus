@@ -17,7 +17,7 @@ void initialize(Queue<T> &queue) {
 }
 
 template<typename T>
-T pop(Queue<T> &queue) {
+T remove(Queue<T> &queue) {
     T value = NULL;
     if (queue.start > queue.end) return value;
     
@@ -27,7 +27,7 @@ T pop(Queue<T> &queue) {
 }
 
 template<typename T>
-void push(Queue<T> &queue, T value) {
+void insert(Queue<T> &queue, T value) {
     queue.end++;
     queue.array[queue.end] = value;
 }
@@ -44,15 +44,15 @@ int main() {
     
     initialize(queue);
     
-    push<char>(queue, 'P');
-    push<char>(queue, 'U');
-    push<char>(queue, 'S');
-    push<char>(queue, 'H');
+    insert<char>(queue, 'P');
+    insert<char>(queue, 'U');
+    insert<char>(queue, 'S');
+    insert<char>(queue, 'H');
     
     cout << "Pushed Queue: ";
     show(queue);
     
-    cout << endl << "Poped Queue: " << pop<char>(queue);
+    cout << endl << "Poped Queue: " << remove<char>(queue);
     
     cout << endl << "Queue: ";
     show(queue);
