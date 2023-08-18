@@ -121,7 +121,7 @@ int size(Lue list) {
     return couter;
 }
 
-bool equals(Lue firstList, Lue secondList) {
+bool compare(Lue firstList, Lue secondList) {
     Node *auxiliar = firstList.start;
     Node *otherAuxiliar = secondList.start;
     bool isEqual = true;
@@ -144,12 +144,44 @@ void copy(Lue &firstList, Lue secondList) {
     }
 }
 
+Lue different(Lue firstList, Lue secondList) {
+    Lue resultList;
+    Node *auxiliar = firstList.start;
+    
+    initialize(resultList);
+    
+    while (auxiliar != NULL) {
+        if (search(secondList, auxiliar->data) == NULL) {
+            insert(resultList, auxiliar->data);
+        }
+        auxiliar = auxiliar->connect;
+    }
+    
+    return resultList;
+}
+
+Lue common(Lue firstList, Lue secondList) {
+    Lue resultList;
+    Node *auxiliar = firstList.start;
+    
+    initialize(resultList);
+    
+    while (auxiliar != NULL) {
+        if (search(secondList, auxiliar->data) != NULL) {
+            insert(resultList, auxiliar->data);
+        }
+        auxiliar = auxiliar->connect;
+    }
+    
+    return resultList;
+}
+
 int main() {
-    Lue lue;
-    Lue otherLue;
+    Lue lue, otherLue, anotherLue;
     
     initialize(lue);
     initialize(otherLue);
+    initialize(anotherLue);
     
     insert(lue, 'P');
     insert(lue, 'E');
@@ -170,11 +202,21 @@ int main() {
     cout << endl << search(lue, 'P');
     
     insert(otherLue, 'P');
-    cout << endl << "Lists are equal: " << (equals(lue, otherLue) ? "true" : "false");
+    insert(otherLue, 'E');
+    insert(otherLue, 'R');
+    cout << endl << "Lists are equal: " << (compare(lue, otherLue) ? "true" : "false");
     
     copy(lue, otherLue);
-    cout << "Copied list: ";
+    cout << endl << "Copied list: ";
     show(lue);
+    
+    anotherLue = common(lue, otherLue);
+    cout << endl << "Common List: ";
+    show(anotherLue);
+    
+    anotherLue = different(lue, otherLue);
+    cout << endl << "Differrent List: ";
+    show(anotherLue);
 
     remove(lue, 'A');
     remove(lue, 'E');
