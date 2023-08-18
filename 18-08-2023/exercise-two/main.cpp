@@ -17,13 +17,12 @@ void initialize(Queue<T> &queue) {
 }
 
 template<typename T>
-T remove(Queue<T> &queue) {
-    T value = NULL;
-    if (queue.start > queue.end) return value;
+bool remove(Queue<T> &queue, T &value) {
+    if (queue.start > queue.end) return false;
     
     value = queue.array[queue.start];
     queue.start++;
-    return value;
+    return true;
 }
 
 template<typename T>
@@ -52,7 +51,9 @@ int main() {
     cout << "Pushed Queue: ";
     show(queue);
     
-    cout << endl << "Poped Queue: " << remove<char>(queue);
+    char character;
+    remove<char>(queue, character);
+    cout << endl << "Removed Character: " << character;
     
     cout << endl << "Queue: ";
     show(queue);
