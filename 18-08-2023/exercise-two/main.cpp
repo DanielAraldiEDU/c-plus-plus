@@ -27,6 +27,7 @@ bool remove(Queue<T> &queue, T &value) {
 
 template<typename T>
 void insert(Queue<T> &queue, T value) {
+    if (queue.end == LENGTH - 1) return;
     queue.end++;
     queue.array[queue.end] = value;
 }
