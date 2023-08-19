@@ -27,6 +27,7 @@ T pop(Stack<T> &stack) {
 
 template<typename T>
 void push(Stack<T> &stack, T value) {
+    if (stack.topLevel == LENGTH - 1) return;
     stack.topLevel++;
     stack.array[stack.topLevel] = value;
 }
