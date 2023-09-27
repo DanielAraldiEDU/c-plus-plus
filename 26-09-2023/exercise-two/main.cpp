@@ -81,7 +81,7 @@ bool remove(Node<T> *&root, T value) {
 
 template<typename T>
 int counter(Node<T> *root, int length = 0) {
-    if (root == NULL) return length + 1;
+    if (root == NULL) return length;
     if (root->left != NULL) length = counter(root->left, length + 1);
     if (root->right != NULL) length = counter(root->right, length + 1);
     return length;
