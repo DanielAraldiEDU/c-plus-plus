@@ -40,7 +40,7 @@ bool insert(Node<T> *&root, T value) {
         return true;
     }
     if (root->data == value) return false;
-    if (root->data > value) return insert(root->left, value);
+    if (value < root->data) return insert(root->left, value);
     else return insert(root->right, value);
 }
 
@@ -80,17 +80,13 @@ bool remove(Node<T> *&root, T value) {
 }
 
 template<typename T>
-int counter(Node<T> *root, int length = 0) {
-    if (root == NULL) return length;
-    if (root->left != NULL) length = counter(root->left, length + 1);
-    if (root->right != NULL) length = counter(root->right, length + 1);
-    return length;
+int counter(Node<T> *root) {
+    if (root == NULL) return 0;
+    return 1 + counter(root->left) + counter(root->right);
 }
 
 int main() {
-    Node<char> *root;
-    
-    root = new Node<char>;
+    Node<char> *root = NULL;
     
     insert<char>(root, 'P');
     insert<char>(root, 'E');
